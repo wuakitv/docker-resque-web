@@ -1,13 +1,11 @@
 # Set the base image to Ruby:2.2
-FROM ruby:2.2
+FROM ruby:2.5.1-alpine
 
 # Install wget, sox and flite
-RUN apt-get update && \
-    apt-get upgrade -y && \
-    apt-get install -y zlib1g-dev build-essential && \
-    gem install resque-web && \
-    apt-get autoremove -y zlib1g-dev build-essential && \
-    apt-get clean -y
+RUN apk update && \
+    apk add g++ make && \
+    gem install resque-web -v 0.0.12 && \
+    apk del g++ make
 
 ENTRYPOINT ["resque-web", "-FL"]
 EXPOSE 5678
