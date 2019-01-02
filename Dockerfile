@@ -1,16 +1,11 @@
-# Set the base image to Ruby:2.2
-FROM ruby:2.3.7-alpine
+FROM ruby:2.5.1
 
-# Install wget, sox and flite
-RUN apk update && \
-    apk add g++ make && \
-    gem install redis -v 3.3.3 && \
-    gem install redis-namespace -v 1.6.0 && \
-    gem install resque-web -v 0.0.11 && \
-    apk del g++ make
+RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs
+RUN gem install bundler && gem install rails -v 5.2.0
 
-ENTRYPOINT ["resque-web", "-FL"]
-EXPOSE 5678
+ADD . /resque-web-wrapper
+WORKDIR /resque-web-wrapper
+RUN bundle install
 
-CMD ["-h"]
+CMD ["bundle", "exec", "rails", "s", "-p", "3000", "-b", "0.0.0.0"]
 
