@@ -1,5 +1,7 @@
-PATH
-  remote: vendor/resque-web
+GIT
+  remote: git://github.com/wuakitv/resque-web.git
+  revision: 7d9de03788c2cd2111a07b822d0df8ff2f2e8af2
+  branch: jcasanovas/clear-and-retry-jobs-by-job-class-and-exception
   specs:
     resque-web (0.0.12)
       coffee-rails
@@ -271,4 +273,4 @@ RUBY VERSION
    ruby 2.5.1p57
 
 BUNDLED WITH
-   1.16.1
+   1.16.6
