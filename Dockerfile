@@ -1,7 +1,6 @@
 FROM ruby:2.5.1
 
-RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs
-RUN gem install bundler && gem install rails -v 5.2.0
+RUN apt-get update -qq && apt-get install -y nodejs
 
 ADD . /resque-web-wrapper
 WORKDIR /resque-web-wrapper

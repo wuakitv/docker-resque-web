@@ -61,5 +61,5 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'resque-web', require: 'resque_web', path: 'vendor/resque-web'
+gem 'resque-web', require: 'resque_web', git: 'git://github.com/wuakitv/resque-web.git', branch: 'jcasanovas/clear-and-retry-jobs-by-job-class-and-exception'
 
