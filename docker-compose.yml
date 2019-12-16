@@ -1,0 +1,20 @@
+version: '3.4'
+services:
+  resque-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        GEMFILE_EXTRA_REPO_SETUP: ", git: 'https://github.com/wuakitv/resque-web.git', branch: 'jcasanovas/clear-and-retry-jobs-by-job-class-and-exception'"
+    depends_on:
+      - redis
+    environment:
+      RESQUE_REDIS_URL: 'redis://redis'
+      RAILS_ENV: production
+      RESQUE_REDIS_NAMESPACE: 'dev'
+    ports:
+      - '3000:80'
+  redis:
+    image: redis:3.2.11-alpine
+    ports:
+      - "6379:6379"
